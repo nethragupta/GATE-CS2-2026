@@ -667,8 +667,7 @@ equations produce multiple solutions. Then the product of $a$ and $b$ is
 \underline{\hspace{1.5cm}}. (\textit{answer in integer})
 \hfill (CS2 2026)
 
-\solution This is solved using only Chapter 5 of the matgeo book:
-row reduction \ref{fm:row-reduce}, the characteristic equation
+\solution This is solved using row reduction \ref{fm:row-reduce}, the characteristic equation
 \eqref{eq:chareq} and the Cayley-Hamilton theorem \eqref{eq:cayley}.
 The system is $\vec{A}\vec{x} = \vec{c}$ with augmented matrix
 \begin{align}
@@ -721,7 +720,7 @@ a = -4 &\implies b = -6
 \xleftrightarrow{R_1 \leftarrow \frac{R_1}{4}}
 \myvec{1 & \frac{1}{4} & \frac{3}{2} \\ 0 & 0 & 0}
 \end{align}
-The zero row leaves $y$ free, as in matgeo 5.10.1.16:
+The zero row leaves $y$ free:
 \begin{align}
 x = \frac{3}{2} - \frac{1}{4}y \implies
 \vec{x} = \myvec{\frac{3}{2} \\ 0} + y\myvec{-\frac{1}{4} \\ 1}
@@ -745,11 +744,7 @@ Both cases have infinitely many solutions, and in both
 ab = 24
 \end{align}
 
-The following code solves the problem with matrices only, using the
-Chapter 5 codes of matgeo: \texttt{np.poly} and \texttt{polyvalm} as in
-\texttt{codes/book/cayley.py} for \eqref{eq:q31-char} and
-\eqref{eq:cayley}, and \texttt{sympy.Matrix(...).rref()} as in
-\texttt{codes/book/chembal.py} for the row reduction. It draws the solution
+The following code draws the solution
 lines \eqref{eq:q31-sol1} and \eqref{eq:q31-sol2} in \figref{fig:q31}.
 \begin{lstlisting}
 codes/lines.py
