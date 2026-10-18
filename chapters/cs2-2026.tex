@@ -53,8 +53,7 @@ coefficient of $z^{-k}$, so
 p_Y(3) = \frac{4}{16} = \frac{1}{4}
 \end{align}
 This agrees with \eqref{eq:binom-pmf}:
-$\binom{4}{3}\brak{0.5}^{3}\brak{0.5}^{1} = \frac{1}{4}$. The answer is
-option i).
+$\binom{4}{3}\brak{0.5}^{3}\brak{0.5}^{1} = \frac{1}{4}$.
 
 The following code verifies the solution and generates \figref{fig:q3-pmf}.
 \begin{lstlisting}
@@ -90,7 +89,7 @@ and their value the next day is
 \begin{align}
 2 \times 55 + 1 \times 70 = 180
 \end{align}
-so the profit is $180 - \brak{100 + 80} = 0$. The answer is option i).
+so the profit is $180 - \brak{100 + 80} = 0$.
 
 The following code verifies the solution.
 \begin{lstlisting}
@@ -147,7 +146,6 @@ The primes in $\cbrak{2, \dots, 12}$ are $2, 3, 5, 7, 11$. From
 \pr{S \text{ prime}} &= p_S(2) + p_S(3) + p_S(5) + p_S(7) + p_S(11) \\
 &= \frac{1 + 2 + 4 + 6 + 2}{36} = \frac{15}{36}
 \end{align}
-The answer is option iii).
 
 The following code verifies the solution by simulation and generates \figref{fig:q10}.
 \begin{lstlisting}
@@ -177,7 +175,7 @@ variable $X$?
   \item $X$ is a Poisson random variable
   \item $X$ is a uniform random variable
 \end{enumerate}
-\solution \textbf{Option ii) is true: $X$ is a normal random variable.}
+\solution \textbf{$X$ is a normal random variable.}
 Comparing \eqref{eq:q14-pdf} with \eqref{eq:gauss-pdf},
 \begin{align}
 \mu = 0, \quad 2\sigma^2 = 18 \implies \sigma = 3
@@ -207,7 +205,6 @@ so $X \sim \gauss{0}{9}$.
   \end{align}
   and it is never zero.
 \end{itemize}
-The answer is option ii).
 
 The following code compares the numerical PDF of $\gauss{0}{9}$ samples with \eqref{eq:q14-pdf} in \figref{fig:q14}.
 \begin{lstlisting}
@@ -301,7 +298,7 @@ p3.c:5:9: error: conflicting types for 'a'; have 'float'
 \end{itemize}
 P1 shows that the same name may be reused in a \emph{different} scope.
 P2 and P3 fail because they reuse it in the \emph{same} scope, whatever
-the type. The answer is option i).
+the type.
 
 Compiling the three programs confirms the solution: only P1 compiles.
 \begin{lstlisting}
@@ -359,7 +356,7 @@ $\log(n) \to \infty$ \\
 Chaining \eqref{eq:q24-chain} gives
 $\log(n) < n^{1/3} < n < n\log(n)$ in growth rate. Since
 $2^{\log(n)} = n$ and $\log(n!) = \Theta\brak{n\log(n)}$, the order is
-$\log(n),\ n^{1/3},\ 2^{\log(n)},\ \log(n!)$. The answer is option i).
+$\log(n),\ n^{1/3},\ 2^{\log(n)},\ \log(n!)$.
 
 The following code plots the four functions in \figref{fig:q24}. Note that $n^{1/3}$ overtakes $\log(n)$ only after $n \approx 10^3$.
 \begin{lstlisting}
@@ -453,7 +450,7 @@ reproduces the initial condition, so \eqref{eq:zseq-shift} applies.
   which agrees with \eqref{eq:arith-sum}.
 \end{enumerate}
 Only i) and ii) are $\Theta(n)$, in agreement with the master theorem
-\eqref{eq:master}. The answer is options i) and ii).
+\eqref{eq:master}.
 
 The following code checks each closed form above against the recurrence and plots $T(n)/n$ in \figref{fig:q25}. It stays bounded only for i) and ii).
 \begin{lstlisting}
@@ -493,7 +490,6 @@ Which of the following properties is/are satisfied by $R$?
   \item Not antisymmetric: $(1, 4), (4, 1) \in R$ since $1 \times 4 = 2^2$,
   but $1 \ne 4$.
 \end{itemize}
-The answer is options i), ii) and iii).
 
 The following code checks all four properties and draws $R$ in \figref{fig:q26}.
 \begin{lstlisting}
@@ -526,8 +522,7 @@ Which of the following statements is/are true?
 \begin{align}
 I(a) = \Big[x^3 + x\Big]_{-1}^{1} - a \cdot 0 = 2 - (-2) = 4
 \end{align}
-for every $a$. So i) and iii) are true and ii) and iv) are false. The answer
-is options i) and iii).
+for every $a$. So i) and iii) are true and ii) and iv) are false.
 
 The following code evaluates $I(a)$ numerically in \figref{fig:q27}.
 \begin{lstlisting}
@@ -573,7 +568,6 @@ iv) & $-5 + (-7)$ & $-12$ & Yes \\
 \end{tabular}
 \caption{Operations}
 \end{table}
-The answer is options ii) and iv).
 
 The following code verifies the solution.
 \begin{lstlisting}
@@ -796,7 +790,7 @@ exist (for example, edge-disjoint Hamiltonian paths). In $K_5$,
 \begin{align}
 T_1: 0 - 1 - 2 - 3 - 4, \qquad T_2: 0 - 2 - 4 - 1 - 3
 \end{align}
-share no edge. The answer is option iii).
+share no edge.
 
 The following code enumerates all 125 spanning trees of $K_5$, finds the minimum Jaccard coefficient, and draws \figref{fig:q36}.
 \begin{lstlisting}
@@ -834,7 +828,7 @@ d_1 < d_2 < \dots < d_{n-1}
 \end{align}
 which needs only the consecutive checks $d_i < d_{i+1}$: one pass, $O(n)$.
 Every element must be read, since changing an unread element could break
-the condition, so $\Omega(n)$ is needed. The answer is option i).
+the condition, so $\Omega(n)$ is needed.
 
 The following code implements the $O(n)$ check.
 \begin{lstlisting}
@@ -888,7 +882,6 @@ $T[i][j-1]$, and the boundary cells are already correct.
   index sum $s - 1$, so they were computed in the previous pass. Every
   cell has $2 \le i + j \le 2n$. Correct.
 \end{itemize}
-The answer is option i).
 
 The following code compares both algorithms with the recursive formulation.
 \begin{lstlisting}
@@ -919,7 +912,7 @@ $8$--$11$ are $10CD$ ($A = 1, B = 0$), with $C, D$ taking all values. So
 \begin{align}
 F = A'B' + AB' = B'
 \end{align}
-from \eqref{eq:bool-comb}. The answer is option ii).
+from \eqref{eq:bool-comb}.
 
 The following code checks every option against the truth table.
 \begin{lstlisting}
@@ -961,7 +954,7 @@ three zeros and divide by $1001$ modulo 2:
 000000000100
 \end{lstlisting}
 \end{minipage}\par\medskip
-The remainder is $100$. The answer is option iv).
+The remainder is $100$.
 
 The following code verifies the solution.
 \begin{lstlisting}
@@ -1011,7 +1004,7 @@ $4\ 3\ 1\ 2$ & $5$ & No \\
 \caption{Possible splits of the output}
 \end{table}
 Option iii) would output $5$ first and option iv) would output
-$3\ 2\ 1\ 4\ 5$. The answer is options i) and ii).
+$3\ 2\ 1\ 4\ 5$.
 
 The following code tries all 32 assignments and prints the valid ones.
 \begin{lstlisting}
@@ -1061,8 +1054,7 @@ with \texttt{**\$}, which rules out iv). \texttt{Signal(B)} after
 \texttt{\$}, and after each \texttt{\#}, lets the waiting processes print
 their \texttt{\#} one at a time. The third process can enter at any time
 after $A$ is released: before any \texttt{\#} (option i), after one
-(option ii) or after two (option iii). The answer is options i), ii) and
-iii).
+(option ii) or after two (option iii).
 
 The following code explores every interleaving and lists all possible outputs.
 \begin{lstlisting}
