@@ -6,6 +6,12 @@ import subprocess
 import shlex                     
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 # 200 values of n spread evenly on a log scale, from 10^1 to 10^8
 # (logspace(1, 8, ...) means 10**1 ... 10**8)
 n = np.logspace(1, 8, 200)
@@ -41,7 +47,7 @@ ax.legend()                                         # box naming each curve
 ax.grid(True, which='both', linestyle='--', alpha=0.4)
 
 #If using termux
-plt.savefig('figs/growth.pdf')                      
-subprocess.run(shlex.split("termux-open figs/growth.pdf"))   
+plt.savefig(os.path.join(FIGS, 'growth.pdf'))                      
+subprocess.run(['termux-open', os.path.join(FIGS, 'growth.pdf')])   
 #else
 #plt.show()                                         

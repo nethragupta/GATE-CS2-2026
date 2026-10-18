@@ -6,6 +6,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 import sys, os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
@@ -63,7 +69,7 @@ ax.set_ylim(0, 0.155)            # just above the peak f(0) = 0.133
 ax.legend()
 
 #if using termux
-plt.savefig('figs/gauss.pdf')
-subprocess.run(shlex.split("termux-open figs/gauss.pdf"))
+plt.savefig(os.path.join(FIGS, 'gauss.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'gauss.pdf')])
 #else
 #plt.show()

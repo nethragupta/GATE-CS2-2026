@@ -8,6 +8,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 N = 2**12                        # largest n = 4096
 # One array per recurrence; T[n] will hold T(n). Index 0 is unused.
 TA = np.zeros(N + 1); TB = np.zeros(N + 1); TC = np.zeros(N + 1); TD = np.zeros(N + 1)
@@ -46,7 +52,7 @@ ax.legend()
 ax.grid(True, which='both', linestyle='--', alpha=0.4)
 
 #If using termux
-plt.savefig('figs/recurrence.pdf')
-subprocess.run(shlex.split("termux-open figs/recurrence.pdf"))
+plt.savefig(os.path.join(FIGS, 'recurrence.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'recurrence.pdf')])
 #else
 #plt.show()

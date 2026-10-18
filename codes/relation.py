@@ -7,6 +7,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 A = range(1, 11)                 # the numbers 1 to 10
 # M is the 10x10 relation matrix: M[x-1][y-1] = 1 if (x, y) is in R.
 # math.isqrt(n) is the integer part of sqrt(n); n is a perfect square
@@ -39,7 +45,7 @@ ax.set_title(r'$(x, y) \in R$ (shaded)')
 ax.grid(True, linestyle='--', alpha=0.3)
 
 #If using termux
-plt.savefig('figs/relation.pdf')
-subprocess.run(shlex.split("termux-open figs/relation.pdf"))
+plt.savefig(os.path.join(FIGS, 'relation.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'relation.pdf')])
 #else
 #plt.show()

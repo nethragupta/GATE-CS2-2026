@@ -6,6 +6,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 import sys, os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
@@ -57,7 +63,7 @@ for spine in ax.spines.values():                        # remove the box around 
     spine.set_visible(False)
 
 #If using termux
-plt.savefig('figs/hash.pdf')
-subprocess.run(shlex.split("termux-open figs/hash.pdf"))
+plt.savefig(os.path.join(FIGS, 'hash.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'hash.pdf')])
 #else
 #plt.show()

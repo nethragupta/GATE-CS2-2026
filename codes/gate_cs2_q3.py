@@ -6,6 +6,12 @@ import subprocess                               # runs termux-open at the end
 import shlex                                    # splits that command into words
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 # binomial_distribution(p, n, z) returns the list
 #   C(n,k) p^k (1-p)^(n-k) z^k   for k = 0, 1, ..., n
 from ncertprob.funcs import binomial_distribution
@@ -88,8 +94,8 @@ ax.set_ylabel(r'$p_Y(k)$')
 ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0., frameon=True)
 
 #If using termux
-plt.savefig('figs/pmf.pdf')                                # save the figure for the book
-subprocess.run(shlex.split("termux-open figs/pmf.pdf"))    # open it on Android
+plt.savefig(os.path.join(FIGS, 'pmf.pdf'))                                # save the figure for the book
+subprocess.run(['termux-open', os.path.join(FIGS, 'pmf.pdf')])    # open it on Android
 
 #else
 #plt.show()                                                # on a PC: open in a window
