@@ -1,0 +1,332 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm]{geometry}
+%\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{tfrupee} % Include tfrupee package
+
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+
+%\usepackage[a5paper, top=10mm, bottom=10mm, left=10mm, right=10mm]{geometry}
+
+%
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usetikzlibrary{patterns}
+\lstset{aboveskip=12pt}
+\usepackage[justification=centering]{caption} % 'center' is not accepted by newer versions of caption
+%\setlength{\intextsep}{10pt} % Space between text and floats
+\raggedbottom
+%\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black % Changes text color instead of placing a box around it
+}
+\usepackage{amsfonts}
+\makeindex
+
+\begin{document}
+\bibliographystyle{IEEEtran}
+\onecolumn
+
+
+\title{
+	%\begin{flushleft}
+	\begin{center}
+	%MATRICES \\ In Geometry
+	Math for EE
+	\\
+\rule{0.4\columnwidth}{0.4pt}
+%\end{flushleft}
+\end{center}
+}
+\author{
+\vspace{11cm}
+	%\begin{flushleft}
+	\begin{center}
+\includegraphics[width=0.2\columnwidth]{figs/logo.jpg}
+\\
+		{	\huge G. V. V. Sharma}
+	\end{center}
+	%\end{flushleft}
+%\IEEEpubid{\makebox[\columnwidth]{978-1-7281-5966-1/20/\$31.00 ©2020 IEEE \hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
+}
+\maketitle
+
+\newpage
+\section*{About this Book}
+
+This book introduces matrices through high school coordinate geometry. This approach makes it easier for beginners to learn Python for scientific computing. All problems in the book are from NCERT mathematics textbooks from Class 9-12.  Exercises are from CBSE board exam papers.   
+
+The content is sufficient for industry jobs and covers nearly all matrix prerequisites for machine learning.
+There is no copyright, so readers are free to print and share.  
+
+%This book is dedicated to my high school teachers, Dr. G.N. Chandwani and Dr. Anand K. Tripathi.
+%\begin{flushright}
+%\today
+%\end{flushright}
+%Github: https://github.com/gadepall/matgeo
+%		\\
+License: https://creativecommons.org/licenses/by-sa/3.0/
+\\
+and
+\\
+https://www.gnu.org/licenses/fdl-1.3.en.html
+\\
+First manual appeared in January 2018
+\\
+First edition published on July 10, 2024
+\\
+In this edition, some incorrect solutions were removed.  All figures redrawn. More problems added.
+
+\newpage
+
+
+\tableofcontents
+
+\newpage
+%\twocolumn
+\onecolumn
+
+
+%\renewcommand{\theequation}{\theenumi}
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi}
+%\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\section{GATE CS2 2026}
+\subsection{Formulae}
+\input{chapters/cs2-2026_formulae.tex}
+\subsection{Problems}
+\input{chapters/cs2-2026.tex}
+\iffalse
+\subsection{Formulae}
+\input{chapters/formulae/vectors/two.tex}
+\subsection{Point Vectors}
+\input{chapters/vectors/direction.tex}
+\subsection{CBSE}
+\input{cbse/vectors/direction.tex}
+%\subsection{JEE}
+%\input{jee/vectors/direction.tex}
+\subsection{Section Formula}
+\input{chapters/vectors/section.tex}
+\subsection{CBSE}
+\input{cbse/vectors/section.tex}
+\subsection{Rank}
+\input{chapters/vectors/rank.tex}
+\subsection{CBSE}
+\input{cbse/vectors/rank.tex}
+\subsection{Length}
+\input{chapters/vectors/length.tex}
+\subsection{CBSE}
+\input{cbse/vectors/length.tex}
+\subsection{Unit Vector}
+\input{chapters/vectors/unit.tex}
+\subsection{CBSE}
+\input{cbse/vectors/unit.tex}
+%\subsection{JEE}
+%\input{JEE/vector-alg.tex}
+%
+\newpage
+\section{Vector Multiplication}
+\subsection{Formulae}
+\input{chapters/formulae/vectors/product.tex}
+\subsection{Scalar Product}
+\input{chapters/vectors/scalar.tex}
+\subsection{CBSE}
+\input{cbse/vectors/scalar.tex}
+\subsection{Orthogonality}
+\input{chapters/vectors/ortho.tex}
+\subsection{CBSE}
+\input{cbse/vectors/ortho.tex}
+\subsection{Vector Product}
+\input{chapters/vectors/cross.tex}
+\subsection{CBSE}
+\input{cbse/vectors/cross.tex}
+\subsection{Miscellaneous}
+\input{chapters/vectors/misc.tex}
+\subsection{CBSE}
+\input{cbse/vectors/misc.tex}
+\subsection{JEE}
+\input{JEE/vector.tex}
+\newpage
+\section{Constructions}
+\subsection{Formulae}
+\input{chapters/formulae/const.tex}
+\subsection{Triangle}
+\input{chapters/const/tri.tex}
+\subsection{CBSE}
+\input{cbse/const/tri.tex}
+\subsection{Quadrilateral}
+\input{chapters/const/quad.tex}
+\newpage
+\section{Linear Forms}
+\subsection{Formulae}
+\input{chapters/formulae/perp.tex}
+\subsection{Parameters}
+\input{chapters/linear/param.tex}
+\subsection{Equation }
+\input{chapters/linear/equation.tex}
+\subsection{CBSE}
+\input{cbse/linear/equation.tex}
+\subsection{Parallel}
+\input{chapters/linear/parallel.tex}
+\subsection{CBSE}
+\input{cbse/linear/parallel.tex}
+\subsection{Perpendicular}
+\input{chapters/linear/perp.tex}
+\subsection{CBSE}
+\input{cbse/linear/perp.tex}
+\subsection{Angle}
+\input{chapters/linear/angle.tex}
+\subsection{Intersection}
+\input{chapters/linear/intersect.tex}
+\subsection{CBSE}
+\input{cbse/linear/intersect.tex}
+\subsection{Miscellaneous }
+\input{chapters/linear/misc.tex}
+\subsection{JEE}
+\input{JEE/linear.tex}
+\newpage
+\section{Matrices}
+\subsection{Formulae}
+\input{chapters/formulae/vectors/mat.tex}
+\subsection{Equation}
+\input{chapters/matrix/equation.tex}
+\subsection{CBSE}
+\input{cbse/matrix/equation.tex}
+\subsection{Inverse}
+\input{chapters/matrix/inverse.tex}
+\subsection{CBSE}
+\input{cbse/matrix/inverse.tex}
+\subsection{Cayley-Hamilton Theoerm}
+\input{chapters/matrix/cayley.tex}
+\subsection{CBSE}
+\input{cbse/matrix/cayley.tex}
+\subsection{Application}
+\input{chapters/matrix/appl.tex}
+\subsection{CBSE}
+\input{cbse/matrix/appl.tex}
+\subsection{Chemistry}
+\input{chapters/matrix/chem.tex}
+\subsection{Physics}
+\input{chapters/matrix/phy.tex}
+\subsection{CBSE}
+\input{cbse/matrix/misc.tex}
+\subsection{JEE}
+\input{JEE/matrix.tex}
+\newpage
+\section{Skew Lines}
+\subsection{Formulae}
+\input{chapters/formulae/lsq}
+\subsection{Least Squares}
+\input{chapters/skew/lsq.tex}
+\subsection{Singular Value Decomposition}
+\input{chapters/skew/svd.tex}
+\subsection{CBSE}
+\input{cbse/skew/lsq.tex}
+\newpage
+\section{Circle}
+\subsection{Formulae}
+\input{chapters/formulae/circle/equation.tex}
+\subsection{Equation}
+\input{chapters/circles/examples/equation.tex}
+\subsection{Miscellaneous}
+\input{chapters/circles/examples/misc.tex}
+\subsection{JEE}
+\input{JEE/circle.tex}
+\newpage
+\section{Conics}
+\subsection{Formulae}
+\input{chapters/formulae/conics/equation}
+\subsection{Equation}
+\input{chapters/conics/examples/equation.tex}
+\subsection{Miscellaneous}
+\input{chapters/conics/examples/misc.tex}
+\subsection{JEE}
+ \input{JEE/conic.tex}
+\newpage
+\section{Intersection of Conics}
+\subsection{Formulae}
+\input{chapters/formulae/inter/curves.tex}
+\subsection{Chords}
+\input{chapters/inter/examples/chord.tex}
+\subsection{CBSE}
+\input{cbse/inter/chord.tex}
+\subsection{Quadratic Equations}
+\input{chapters/conics/examples/quad.tex}
+\subsection{CBSE}
+\input{cbse/conics/quad.tex}
+\subsection{Curves}
+\input{chapters/inter/examples/curves.tex}
+\subsection{CBSE}
+\input{cbse/inter/curves.tex}
+\subsection{JEE}
+ \input{JEE/inter.tex}
+
+\newpage
+\section{Tangent And Normal}
+\subsection{Formulae}
+\input{chapters/formulae/inter/tangent.tex}
+\subsection{Circle}
+\input{chapters/tangent/examples/circle.tex}
+\subsection{Conic}
+\input{chapters/tangent/examples/conic.tex}
+\subsection{CBSE}
+\input{cbse/tangent/conic.tex}
+\subsection{Construction}
+\input{chapters/tangent/examples/const.tex}
+\subsection{CBSE}
+\input{cbse/tangent/const.tex}
+\subsection{JEE}
+ \input{JEE/tangent.tex}
+%
+\newpage
+\section{Vector Algebra}
+\subsection{Formulae}
+\input{chapters/formulae/vectors/alg.tex}
+\subsection{Examples}
+\input{chapters/vectors/examples.tex}
+\subsection{JEE}
+ \input{JEE/alg.tex}
+\newpage
+\section{GATE}
+\input{GATE/matrix.tex}
+\newpage
+\appendices
+\section{Triangle}
+%\numberwithin{equation}{section}
+Consider a triangle with vertices
+		\begin{align}
+			\label{eq:app-tri-pts}
+			\vec{A} = \myvec{1 \\ -1},\,
+			\vec{B} = \myvec{-4 \\ 6},\,
+			\vec{C} = \myvec{-3 \\ -5}
+		\end{align}
+\subsection{Sides}
+\input{chapters/triangle/vector}
+\subsection{Formulae}
+\input{chapters/formulae/line}
+\subsection{Median}
+\input{chapters/triangle/median}
+\subsection{Altitude}
+\input{chapters/triangle/altitude}
+\subsection{Perpendicular Bisector}
+\input{chapters/triangle/perp-bisect}
+\subsection{Angle Bisector}
+\input{chapters/triangle/angle-bisect}
+\subsection{Eigenvalues and Eigenvectors}
+\input{chapters/triangle/eigen}
+\subsection{Formulae}
+\input{chapters/formulae/circle/tangent}
+\subsection{Matrices}
+\input{chapters/triangle/matrix}
+\newpage
+\section{Conic Section}
+\input{chapters/formulae/conics/app}
+\fi
+\end{document}
+
+
