@@ -6,6 +6,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 # binomial_distribution(p, n, z) returns C(n,k) p^k (1-p)^(n-k) z^k for k = 0..n
 from ncertprob.funcs import binomial_distribution
 
@@ -93,7 +99,7 @@ ax.legend()
 ax.grid(True, linestyle='--', alpha=0.5)
 
 #If using termux
-plt.savefig('figs/coins.pdf')
-subprocess.run(shlex.split("termux-open figs/coins.pdf"))
+plt.savefig(os.path.join(FIGS, 'coins.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'coins.pdf')])
 #else
 #plt.show()

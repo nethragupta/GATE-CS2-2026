@@ -6,6 +6,12 @@ import subprocess
 import shlex
 #end if
 
+# Save figures in the repo's figs/ folder no matter where the script is run from
+# (figs/ sits next to this codes/ folder)
+import os
+FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)
+
 
 import sys, os
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -45,7 +51,7 @@ ax.legend()
 ax.grid(True, linestyle='--', alpha=0.5)
 
 #If using termux
-plt.savefig('figs/integral.pdf')
-subprocess.run(shlex.split("termux-open figs/integral.pdf"))
+plt.savefig(os.path.join(FIGS, 'integral.pdf'))
+subprocess.run(['termux-open', os.path.join(FIGS, 'integral.pdf')])
 #else
 #plt.show()
