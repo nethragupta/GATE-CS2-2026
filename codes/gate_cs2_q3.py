@@ -1,14 +1,8 @@
 import numpy as np                              # arrays
 import matplotlib.pyplot as plt                 # plotting
 from sympy import symbols, expand, Rational     # exact (symbolic) algebra
-#If using termux
 import subprocess                               # runs termux-open at the end
-import shlex                                    # splits that command into words
-#end if
-
-# binomial_distribution(p, n, z) returns the list
-#   C(n,k) p^k (1-p)^(n-k) z^k   for k = 0, 1, ..., n
-from ncertprob.funcs import binomial_distribution
+import shutil                                   # checks whether termux-open exists
 
 # Tell Python where to find CoordGeo:
 #   ROOT = this codes/ folder (CoordGeo, cprog, ncert-probability live here)
@@ -19,6 +13,16 @@ import sys, os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, 'CoordGeo'))
+
+# Where the figure is saved: GATE-CS2-2026/figs/pmf.pdf
+# Built from ROOT, so the script works no matter which folder you run it from.
+FIGS = os.path.join(ROOT, '..', 'figs')
+os.makedirs(FIGS, exist_ok=True)                # create figs/ if it is missing
+OUT = os.path.normpath(os.path.join(FIGS, 'pmf.pdf'))
+
+# binomial_distribution(p, n, z) returns the list
+#   C(n,k) p^k (1-p)^(n-k) z^k   for k = 0, 1, ..., n
+from ncertprob.funcs import binomial_distribution
 
 from CoordGeo.line.funcs import line_gen        # points on the segment from A to B
 from CoordGeo.plotting.funcs import label_pts   # writes a label above each point
@@ -87,9 +91,14 @@ ax.set_ylabel(r'$p_Y(k)$')
 # Legend placed just outside the top right corner of the plot
 ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0., frameon=True)
 
-#If using termux
-plt.savefig('figs/pmf.pdf')                                # save the figure for the book
-subprocess.run(shlex.split("termux-open figs/pmf.pdf"))    # open it on Android
+# Save the figure for the book
+plt.savefig(OUT)
+print("Saved figure to", OUT)
 
-#else
-#plt.show()                                                # on a PC: open in a window
+# Open it: on Termux, termux-open hands the PDF to a viewer app;
+# on a PC, show it in a normal plot window instead.
+if shutil.which('termux-open'):
+    subprocess.run(['termux-open', OUT])
+else:
+    plt.show()
+
