@@ -1,0 +1,380 @@
+% GATE CS2 2026: formulae used in the solutions
+% Included from main.tex with \input{chapters/cs2-2026_formulae.tex}
+
+% Unique link targets for equations, figures and tables. Numbers restart in
+% every item (\numberwithin{...}{enumi} in main.tex), so without the
+% subsection in the name, e.g. equation 1 of item 1 in Formulae and in
+% Problems would get the same hyperref target and links could jump to the
+% wrong place ("destination with the same identifier" warnings).
+\renewcommand{\theHequation}{\thesubsection.\arabic{enumi}.\arabic{equation}}
+\renewcommand{\theHfigure}{\thesubsection.\arabic{enumi}.\arabic{figure}}
+\renewcommand{\theHtable}{\thesubsection.\arabic{enumi}.\arabic{table}}
+
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
+
+%---------------------------------------------------------------------
+\item The Z-transform of the PMF of an integer-valued random variable $X$
+is defined as
+\begin{align}
+M_X(z) = \sum_{k=-\infty}^{\infty} p_X(k)\, z^{-k} = \mean{z^{-X}}
+\label{eq:ztrans-def}
+\end{align}
+
+%---------------------------------------------------------------------
+\item If $X_1, \dots, X_n$ are independent and $Y = X_1 + \dots + X_n$, then
+\begin{align}
+M_Y(z) = \prod_{i=1}^{n} M_{X_i}(z)
+\label{eq:ztrans-prod}
+\end{align}
+
+%---------------------------------------------------------------------
+\item For a Bernoulli random variable $X$ with $\pr{X = 1} = p$ and
+$\pr{X = 0} = q = 1 - p$,
+\begin{align}
+M_X(z) = q + p\, z^{-1}
+\label{eq:ztrans-bern}
+\end{align}
+
+%---------------------------------------------------------------------
+\item If $Y$ is the sum of $n$ independent Bernoulli random variables, each
+with parameter $p$, then
+\begin{align}
+p_Y(k) = \binom{n}{k} p^k q^{n-k}, \quad k = 0, 1, \dots, n
+\label{eq:binom-pmf}
+\end{align}
+
+%---------------------------------------------------------------------
+\item The joint Z-transform of two integer-valued random variables $X$ and
+$Y$ is
+\begin{align}
+M_{X,Y}\brak{z_1, z_2} = \mean{z_1^{-X} z_2^{-Y}}
+= \sum_{j}\sum_{k} \pr{X = j, Y = k}\, z_1^{-j} z_2^{-k}
+\label{eq:ztrans-joint}
+\end{align}
+so $\pr{X = j, Y = k}$ is the coefficient of $z_1^{-j} z_2^{-k}$. If
+$\brak{X, Y} = \sum_i \brak{X_i, Y_i}$ with the pairs $\brak{X_i, Y_i}$
+independent, then
+\begin{align}
+M_{X,Y}\brak{z_1, z_2} = \prod_{i} M_{X_i,Y_i}\brak{z_1, z_2}
+\label{eq:ztrans-joint-prod}
+\end{align}
+
+%---------------------------------------------------------------------
+\item For a fair die $X$, uniform on $\cbrak{1, \dots, 6}$,
+\begin{align}
+M_X(z) = \frac{1}{6}\sum_{k=1}^{6} z^{-k}
+\label{eq:ztrans-die}
+\end{align}
+If $S = X_1 + X_2$ for two independent fair dice,
+\begin{align}
+p_S(k) = \frac{6 - \abs{k - 7}}{36}, \quad k = 2, \dots, 12
+\label{eq:dice-sum-pmf}
+\end{align}
+
+%---------------------------------------------------------------------
+\item A random variable $X$ is Gaussian (normal), $X \sim \gauss{\mu}{\sigma^2}$,
+if its PDF is
+\begin{align}
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}
+\exp\brak{-\frac{\brak{x - \mu}^2}{2\sigma^2}}, \quad
+x \in \brak{-\infty, \infty}
+\label{eq:gauss-pdf}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Other standard distributions:
+\begin{enumerate}[label=\alph*)]
+\item An exponential random variable with rate $\lambda > 0$ is continuous,
+takes only non-negative values, and has PDF
+\begin{align}
+f(x) =
+\begin{cases}
+\lambda e^{-\lambda x} & x \ge 0 \\
+0 & x < 0
+\end{cases}
+\label{eq:exp-pdf}
+\end{align}
+\item A Poisson random variable $X$ with parameter $\lambda > 0$ is
+discrete. It counts the number of events in a fixed interval when events
+occur independently at an average rate $\lambda$, so it takes only the
+values $0, 1, 2, \dots$, with PMF
+\begin{align}
+\pr{X = k} = \frac{\lambda^{k} e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \dots
+\label{eq:poisson-pmf}
+\end{align}
+Being discrete, it has a PMF, not a PDF over the real line.
+\item A uniform random variable on $[a, b]$ is continuous with PDF
+\begin{align}
+f(x) =
+\begin{cases}
+\frac{1}{b - a} & a \le x \le b \\
+0 & \text{otherwise}
+\end{cases}
+\label{eq:unif-pdf}
+\end{align}
+which is constant on $[a, b]$ and zero outside it.
+\end{enumerate}
+
+%---------------------------------------------------------------------
+\item Conditional probability:
+\begin{align}
+\pr{A \mid B} = \frac{\pr{AB}}{\pr{B}}
+\label{eq:cond-prob}
+\end{align}
+
+%---------------------------------------------------------------------
+\item If $g$ is an odd function, $g(-x) = -g(x)$, then
+\begin{align}
+\int_{-a}^{a} g(x)\, dx = 0
+\label{eq:odd-int}
+\end{align}
+
+%---------------------------------------------------------------------
+\item For $m \neq -1$,
+\begin{align}
+\int x^{m}\, dx = \frac{x^{m+1}}{m+1} + C
+\label{eq:power-rule}
+\end{align}
+
+%---------------------------------------------------------------------
+\item The sum of the first $n$ natural numbers is
+\begin{align}
+\sum_{k=1}^{n} k = \frac{n(n+1)}{2}
+\label{eq:arith-sum}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Asymptotic notation. For positive functions $f(n)$ and $g(n)$,
+\begin{align}
+f(n) = o\brak{g(n)} &\iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
+\label{eq:little-o} \\
+f(n) = O\brak{g(n)} &\iff f(n) \le c\, g(n) \text{ for large } n
+\label{eq:big-o} \\
+f(n) = \Theta\brak{g(n)} &\iff c_1 g(n) \le f(n) \le c_2 g(n)
+\text{ for large } n
+\label{eq:theta}
+\end{align}
+for some constants $c, c_1, c_2 > 0$. In words, $o$ (little-o) means $f$ grows \emph{strictly slower} than $g$:
+however large a multiple of $f$ is taken, $g$ eventually overtakes it.
+$O$ (big-O) means $f$ grows \emph{no faster} than $g$, possibly at the
+same rate. $\Theta$ means $f$ and $g$ grow at the \emph{same} rate, up to
+constant factors. So $o$ is the strict version of $O$, just as $<$ is the
+strict version of $\le$.
+
+%---------------------------------------------------------------------
+\item For any constants $\epsilon > 0$ and $0 \le a < b$,
+\begin{align}
+\log(n) = o\brak{n^{\epsilon}}, \qquad n^{a} = o\brak{n^{b}}
+\label{eq:growth}
+\end{align}
+
+%---------------------------------------------------------------------
+\item
+\begin{align}
+\log(n!) = \Theta\brak{n \log(n)}
+\label{eq:log-fact}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Master theorem. For $T(n) = a\,T\brak{\frac{n}{b}} + f(n)$ with
+$a \ge 1$, $b > 1$,
+\begin{align}
+T(n) =
+\begin{cases}
+\Theta\brak{n^{\log_b a}} & f(n) = O\brak{n^{\log_b a - \epsilon}}
+\text{ for some } \epsilon > 0 \\
+\Theta\brak{n^{\log_b a}\log(n)} & f(n) = \Theta\brak{n^{\log_b a}}
+\end{cases}
+\label{eq:master}
+\end{align}
+
+%---------------------------------------------------------------------
+\item The (one-sided) Z-transform of a sequence $x[k]$, $k \ge 0$, is
+\begin{align}
+X(z) = \sum_{k=0}^{\infty} x[k]\, z^{-k}
+\label{eq:zseq-def}
+\end{align}
+If $x[-1] = 0$, a delay by one step multiplies the transform by $z^{-1}$:
+\begin{align}
+x[k-1] \system{Z} z^{-1} X(z)
+\label{eq:zseq-shift}
+\end{align}
+
+%---------------------------------------------------------------------
+\item For a constant $a$ and $\abs{z} > \abs{a}$,
+\begin{align}
+a^{k} &\system{Z} \frac{1}{1 - a z^{-1}}
+\label{eq:zseq-geo} \\
+(k+1)\, a^{k} &\system{Z} \frac{1}{\brak{1 - a z^{-1}}^{2}}
+\label{eq:zseq-geo2} \\
+\frac{(k+1)(k+2)}{2} &\system{Z} \frac{1}{\brak{1 - z^{-1}}^{3}}
+\label{eq:zseq-geo3}
+\end{align}
+
+%---------------------------------------------------------------------
+\item A relation $R$ on a set $A$ is
+\begin{align}
+\text{reflexive if } & (x, x) \in R \ \ \forall x \in A
+\label{eq:rel-ref} \\
+\text{symmetric if } & (x, y) \in R \implies (y, x) \in R
+\label{eq:rel-sym} \\
+\text{transitive if } & (x, y), (y, z) \in R \implies (x, z) \in R
+\label{eq:rel-trans} \\
+\text{antisymmetric if } & (x, y), (y, x) \in R \implies x = y
+\label{eq:rel-anti}
+\end{align}
+
+%---------------------------------------------------------------------
+\item The characteristic equation for a matrix $\vec{A}$ is
+\begin{align}
+f\brak{\lambda} = \mydet{\vec{A} - \lambda\vec{I}} = 0
+\label{eq:chareq}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Cayley-Hamilton theorem:
+\begin{align}
+f\brak{\lambda} = f\brak{\vec{A}} = \vec{0}
+\label{eq:cayley}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Solving $\vec{A}\vec{x} = \vec{c}$ by row reduction of the augmented
+matrix $\myvec{\vec{A} & \vec{c}}$. Elementary row operations, such as
+\begin{align}
+R_2 \leftarrow \alpha R_2 + \beta R_1, \quad \alpha \ne 0
+\label{eq:row-op}
+\end{align}
+do not change the solutions. After reduction:
+\begin{enumerate}[label=\alph*)]
+\item a row $\myvec{0 & \dots & 0 & | & 0}$ leaves a variable free, giving
+infinitely many solutions;
+\item a row $\myvec{0 & \dots & 0 & | & d}$ with $d \ne 0$ means there is
+no solution.
+\end{enumerate}
+\label{fm:row-reduce}
+
+%---------------------------------------------------------------------
+\item For an $n \times n$ matrix $\vec{A}$ and a scalar $c$,
+\begin{align}
+\det\brak{c\vec{A}} = c^{n}\det\brak{\vec{A}}
+\label{eq:det-scale}
+\end{align}
+
+%---------------------------------------------------------------------
+\item In $n$-bit two's complement, the bits $b_{n-1} \dots b_1 b_0$
+represent
+\begin{align}
+x = -b_{n-1} 2^{n-1} + \sum_{i=0}^{n-2} b_i 2^{i}
+\label{eq:twos-val}
+\end{align}
+and the representable range is
+\begin{align}
+-2^{n-1} \le x \le 2^{n-1} - 1
+\label{eq:twos-range}
+\end{align}
+An arithmetic operation overflows if its true result lies outside
+\eqref{eq:twos-range}.
+
+%---------------------------------------------------------------------
+\item IEEE 754 single precision. A 32-bit word with sign bit $s$, 8-bit
+exponent $E$ and 23-bit fraction $f$ represents (for $0 < E < 255$)
+\begin{align}
+x = \brak{-1}^{s} \times \brak{1.f}_2 \times 2^{E - 127}
+\label{eq:ieee}
+\end{align}
+
+%---------------------------------------------------------------------
+\item Cyclic Redundancy Check. For data bits $D(x)$ and a generator $G(x)$
+of degree $r$, the check bits appended to the data are
+\begin{align}
+R(x) = x^{r} D(x) \bmod G(x)
+\label{eq:crc}
+\end{align}
+computed with modulo-2 (XOR) arithmetic. In bits: append $r$ zeros to
+the data and divide by the generator pattern.
+
+%---------------------------------------------------------------------
+\item Boolean algebra:
+\begin{align}
+X + X' &= 1 \label{eq:bool-comp} \\
+XY + X'Y &= Y \label{eq:bool-comb}
+\end{align}
+
+%---------------------------------------------------------------------
+\item An active-high $2:4$ decoder with inputs $A$ (MSB) and $B$ gives
+\begin{align}
+D_0 = A'B', \quad D_1 = A'B, \quad D_2 = AB', \quad D_3 = AB
+\label{eq:decoder}
+\end{align}
+A $4$-to-$1$ multiplexer with select lines $S_1 S_0$ and inputs
+$I_0, \dots, I_3$ gives
+\begin{align}
+Y = S_1'S_0' I_0 + S_1'S_0 I_1 + S_1 S_0' I_2 + S_1 S_0 I_3
+\label{eq:mux}
+\end{align}
+
+%---------------------------------------------------------------------
+\item The Jaccard coefficient of two sets $A$, $B$ is
+\begin{align}
+J(A, B) = \frac{\abs{A \cap B}}{\abs{A \cup B}}
+\label{eq:jaccard}
+\end{align}
+A spanning tree of a connected graph with $n$ vertices has $n - 1$ edges.
+The complete graph $K_n$ has $\frac{n(n-1)}{2}$ edges.
+
+%---------------------------------------------------------------------
+\item Hashing with chaining. A key $k$ is placed in the chain of slot
+\begin{align}
+h(k) = k \bmod m
+\label{eq:hash}
+\end{align}
+for a table of $m$ slots. A chain's length is the number of keys that
+hash to its slot.
+
+%---------------------------------------------------------------------
+\item Merging sorted arrays $L$ and $R$ outputs $L$ followed by $R$ if and
+only if
+\begin{align}
+\max(L) \le \min(R)
+\label{eq:merge-void}
+\end{align}
+
+%---------------------------------------------------------------------
+\item A stack is last-in first-out: elements are popped in the reverse of
+the order in which they were pushed. A queue is first-in first-out:
+elements are dequeued in the order in which they were enqueued.
+\label{fm:stack-queue}
+
+%---------------------------------------------------------------------
+\item Binary semaphore $S$:
+\begin{align}
+\text{Wait}(S) &: \text{block until } S = 1, \text{ then set } S = 0
+\label{eq:sem-wait} \\
+\text{Signal}(S) &: \text{set } S = 1 \text{ (waking one waiting process)}
+\label{eq:sem-signal}
+\end{align}
+A binary semaphore initialised to $1$, with Wait before and Signal after a
+block of code, lets only one process run that block at a time (mutual
+exclusion).
+
+%---------------------------------------------------------------------
+\item C scope rules. A declaration in an inner block hides a declaration
+of the same name in an outer scope. The same name cannot be declared twice
+in the same scope. For any variable \texttt{x},
+\begin{align}
+\texttt{*(\&x)} = \texttt{x}
+\label{eq:deref}
+\end{align}
+\label{fm:c-scope}
+
+%---------------------------------------------------------------------
+\item The second digit after the decimal point of $r \in (0, 1)$ is
+\begin{align}
+d_2(r) = \lfloor 100 r \rfloor \bmod 10
+\label{eq:digit2}
+\end{align}
+so $d_2$ is constant on each interval
+$\left[\frac{k}{100}, \frac{k+1}{100}\right)$.
+
+\end{enumerate}
