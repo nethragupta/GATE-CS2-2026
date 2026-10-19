@@ -1,7 +1,3 @@
-
-# On [0, 1) the first two decimal digits split the interval into 100 pieces
-# [k/100, (k+1)/100). f is constant on each piece, so f can only jump at
-# k/100, and it jumps there exactly when two neighbouring pieces differ.
 import numpy as np
 import matplotlib.pyplot as plt
 #If using termux
@@ -10,7 +6,6 @@ import shlex
 #end if
 
 # Save figures in the repo's figs/ folder no matter where the script is run from
-# (figs/ sits next to this codes/ folder)
 import os
 FIGS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
 os.makedirs(FIGS, exist_ok=True)
