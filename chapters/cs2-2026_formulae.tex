@@ -60,14 +60,36 @@ M_{X,Y}\brak{z_1, z_2} = \prod_{i} M_{X_i,Y_i}\brak{z_1, z_2}
 \end{align}
 
 %---------------------------------------------------------------------
-\item For a fair die $X$, uniform on $\cbrak{1, \dots, 6}$,
+\item \textbf{Sum of independent discrete random variables (two dice).}
+Let $X_1, X_2 \in \cbrak{1, 2, 3, 4, 5, 6}$ be independent discrete uniform
+random variables representing the outcomes of two fair dice, each with PMF
 \begin{align}
-M_X(z) = \frac{1}{6}\sum_{k=1}^{6} z^{-k}
-\label{eq:ztrans-die}
+p_{X_1}(n) = p_{X_2}(n) =
+\begin{cases}
+\frac{1}{6}, & 1 \le n \le 6 \\
+0, & \text{otherwise}
+\end{cases}
+\label{eq:die-pmf}
 \end{align}
-If $S = X_1 + X_2$ for two independent fair dice,
+The PMF of $X = X_1 + X_2$ is the discrete convolution of $p_{X_1}(n)$ and
+$p_{X_2}(n)$:
 \begin{align}
-p_S(k) = \frac{6 - \abs{k - 7}}{36}, \quad k = 2, \dots, 12
+p_X(n) = \pr{X_1 + X_2 = n}
+&= \sum_{k} \pr{X_1 = n - k \mid X_2 = k}\, p_{X_2}(k)
+\label{eq:conv-cond} \\
+&= \sum_{k} p_{X_1}(n - k)\, p_{X_2}(k) = p_{X_1}(n) * p_{X_2}(n)
+\label{eq:conv}
+\end{align}
+where \eqref{eq:conv} uses the independence of $X_1$ and $X_2$.
+Substituting \eqref{eq:die-pmf} into \eqref{eq:conv} yields the triangular PMF
+\begin{align}
+p_X(n) =
+\begin{cases}
+0, & n < 2 \\
+\frac{n - 1}{36}, & 2 \le n \le 7 \\
+\frac{13 - n}{36}, & 7 < n \le 12 \\
+0, & n > 12
+\end{cases}
 \label{eq:dice-sum-pmf}
 \end{align}
 

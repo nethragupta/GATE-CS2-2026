@@ -110,40 +110,46 @@ numbers is a prime number is \underline{\hspace{1.5cm}}
   \item $\frac{19}{36}$
 \end{enumerate}
 \end{multicols}
-\solution Let $X_1, X_2$ be the two numbers and $S = X_1 + X_2$. From
-\eqref{eq:ztrans-die}, the Z-transform of each roll is
+\solution Let $X_1, X_2$ be the two numbers and $X = X_1 + X_2$. Each roll
+has the PMF \eqref{eq:die-pmf}, and the two rolls are independent, so from
+\eqref{eq:conv},
 \begin{align}
-M_{X_i}(z) = \frac{1}{6}\brak{z^{-1} + z^{-2} + z^{-3} + z^{-4} + z^{-5} + z^{-6}}
-\label{eq:q10-die}
+p_X(n) = \sum_{k} p_{X_1}(n - k)\, p_{X_2}(k)
+\label{eq:q10-conv}
 \end{align}
-The two rolls are independent, so from \eqref{eq:ztrans-prod} and
-\eqref{eq:q10-die},
+From \eqref{eq:die-pmf}, a term of \eqref{eq:q10-conv} is nonzero, and then
+equal to $\frac{1}{6}\cdot\frac{1}{6} = \frac{1}{36}$, only when
+$1 \le k \le 6$ and $1 \le n - k \le 6$, that is,
 \begin{align}
-M_S(z) &= M_{X_1}(z)\, M_{X_2}(z)
-= \frac{1}{36}\brak{z^{-1} + z^{-2} + \dots + z^{-6}}^{2} \\
-&= \frac{1}{36}\big(z^{-2} + 2z^{-3} + 3z^{-4} + 4z^{-5} + 5z^{-6} + 6z^{-7}
-\nonumber \\
-&\qquad + 5z^{-8} + 4z^{-9} + 3z^{-10} + 2z^{-11} + z^{-12}\big)
-\label{eq:q10-MS}
+\max\brak{1, n - 6} \le k \le \min\brak{6, n - 1}
 \end{align}
-Comparing \eqref{eq:q10-MS} with \eqref{eq:ztrans-def}, $p_S(k)$ is the
-coefficient of $z^{-k}$, which agrees with \eqref{eq:dice-sum-pmf}.
+Hence, for $2 \le n \le 12$,
+\begin{align}
+p_X(n) &= \frac{\min\brak{6, n - 1} - \max\brak{1, n - 6} + 1}{36} \\
+&= \begin{cases}
+\frac{(n - 1) - 1 + 1}{36} = \frac{n - 1}{36}, & 2 \le n \le 7 \\
+\frac{6 - (n - 6) + 1}{36} = \frac{13 - n}{36}, & 7 < n \le 12
+\end{cases}
+\label{eq:q10-pmf}
+\end{align}
+which is \eqref{eq:dice-sum-pmf}. Its values are listed in
+\tabref{tab:q10-pmf}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|ccccccccccc|}
 \hline
-$k$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+$n$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
 \hline
-$36\, p_S(k)$ & 1 & 2 & 3 & 4 & 5 & 6 & 5 & 4 & 3 & 2 & 1 \\
+$36\, p_X(n)$ & 1 & 2 & 3 & 4 & 5 & 6 & 5 & 4 & 3 & 2 & 1 \\
 \hline
 \end{tabular}
-\caption{Coefficients of $M_S(z)$}
+\caption{PMF of the sum of two dice from \eqref{eq:q10-pmf}}
 \label{tab:q10-pmf}
 \end{table}
 The primes in $\cbrak{2, \dots, 12}$ are $2, 3, 5, 7, 11$. From
 \tabref{tab:q10-pmf},
 \begin{align}
-\pr{S \text{ prime}} &= p_S(2) + p_S(3) + p_S(5) + p_S(7) + p_S(11) \\
+\pr{X \text{ prime}} &= p_X(2) + p_X(3) + p_X(5) + p_X(7) + p_X(11) \\
 &= \frac{1 + 2 + 4 + 6 + 2}{36} = \frac{15}{36}
 \end{align}
 
@@ -263,42 +269,9 @@ Which one of the following statements is true?
   \item Only P3 will compile without any error
   \item All three programs P1, P2, and P3 will compile without any error
 \end{enumerate}
-\solution From \ref{fm:c-scope}, a scope is the region of code in which a
-name is visible. Everything outside all functions is the \emph{file
-scope}, and each pair of braces \texttt{\{ \}} starts a new \emph{block
-scope}.
-\begin{itemize}
-  \item \textbf{P1 compiles.} \texttt{int a=5;} is outside \texttt{main},
-  in file scope, while \texttt{int a=7;} is inside the braces of
-  \texttt{main}, in block scope. These are two different variables in two
-  different scopes. Inside \texttt{main} the local \texttt{a} hides the
-  global one, which is allowed.
-
-  \item \textbf{P2 does not compile: redefinition.} Both
-  \texttt{int a=5;} and \texttt{int a=7;} are inside the same braces of
-  \texttt{main}, so they are in the same block scope. The compiler would
-  have to create two variables with the same name in the same place, and
-  then could not tell which one a later use of \texttt{a} refers to. C
-  forbids this. Note that \texttt{int a=7;} is a new declaration, not an
-  assignment. Writing \texttt{a=7;} instead would compile and simply change
-  the value of \texttt{a}. The compiler reports
-  \begin{lstlisting}[mathescape=false]
-p2.c:5:7: error: redefinition of 'a'
-  \end{lstlisting}
-
-  \item \textbf{P3 does not compile: conflicting types.} This is the same
-  mistake, declaring \texttt{a} twice in the same block scope, but now
-  with different types: first \texttt{int}, then \texttt{float}. A
-  variable has exactly one type for its whole lifetime, so \texttt{a}
-  cannot be both an \texttt{int} and a \texttt{float}. Changing the type
-  does not make it a different variable. The compiler reports
-  \begin{lstlisting}[mathescape=false]
-p3.c:5:9: error: conflicting types for 'a'; have 'float'
-  \end{lstlisting}
-\end{itemize}
-P1 shows that the same name may be reused in a \emph{different} scope.
-P2 and P3 fail because they reuse it in the \emph{same} scope, whatever
-the type.
+\solution From \ref{fm:c-scope}, only P1 compiles. In P1 the two
+declarations of \texttt{a} are in different scopes (file and block), while
+P2 and P3 declare \texttt{a} twice in the same block.
 
 Compiling the three programs confirms the solution: only P1 compiles.
 \begin{lstlisting}
@@ -581,19 +554,63 @@ resolved by chaining. After all the keys are inserted, the length of the
 longest chain is \underline{\hspace{1.5cm}}. (\textit{answer in integer})
 \hfill (CS2 2026)
 
-\solution From \eqref{eq:hash} with $m = 9$:
+\solution The table has $m = 9$ slots, numbered $0, 1, \dots, 8$, and from
+\eqref{eq:hash} each key $k$ goes to slot
+\begin{align}
+h(k) = k \bmod 9
+\label{eq:q30-hash}
+\end{align}
+that is, the remainder when $k$ is divided by $9$. With chaining, every slot
+holds a linked list (chain). A key that lands in an empty slot starts a new
+chain there, and a key that lands in an occupied slot (a collision) is
+appended to that slot's chain, so no key is ever moved to another slot.
+
+Inserting the keys in the given order using \eqref{eq:q30-hash}:
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|ccccccccc|}
+\begin{tabular}{|c|c|c|c|l|}
 \hline
-$k$ & 5 & 28 & 19 & 15 & 26 & 33 & 12 & 17 & 10 \\
+Step & $k$ & $k = 9q + r$ & $h(k)$ & Effect \\
 \hline
-$h(k)$ & 5 & 1 & 1 & 6 & 8 & 6 & 3 & 8 & 1 \\
+1 & 5  & $9 \cdot 0 + 5$ & 5 & slot 5 empty, new chain \\
+2 & 28 & $9 \cdot 3 + 1$ & 1 & slot 1 empty, new chain \\
+3 & 19 & $9 \cdot 2 + 1$ & 1 & collision with 28, chain length 2 \\
+4 & 15 & $9 \cdot 1 + 6$ & 6 & slot 6 empty, new chain \\
+5 & 26 & $9 \cdot 2 + 8$ & 8 & slot 8 empty, new chain \\
+6 & 33 & $9 \cdot 3 + 6$ & 6 & collision with 15, chain length 2 \\
+7 & 12 & $9 \cdot 1 + 3$ & 3 & slot 3 empty, new chain \\
+8 & 17 & $9 \cdot 1 + 8$ & 8 & collision with 26, chain length 2 \\
+9 & 10 & $9 \cdot 1 + 1$ & 1 & collision with 28, 19, chain length 3 \\
 \hline
 \end{tabular}
-\caption{Hash values}
+\caption{Inserting the keys one by one}
+\label{tab:q30-steps}
 \end{table}
-Slot 1 holds $28, 19, 10$, so the longest chain has length $3$.
+After all nine insertions, the table is
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|}
+\hline
+Slot & Chain & Length \\
+\hline
+0 & empty & 0 \\
+1 & $28 \to 19 \to 10$ & 3 \\
+2 & empty & 0 \\
+3 & $12$ & 1 \\
+4 & empty & 0 \\
+5 & $5$ & 1 \\
+6 & $15 \to 33$ & 2 \\
+7 & empty & 0 \\
+8 & $26 \to 17$ & 2 \\
+\hline
+\end{tabular}
+\caption{Final hash table}
+\label{tab:q30-table}
+\end{table}
+As a check, the chain lengths add up to $0 + 3 + 0 + 1 + 0 + 1 + 2 + 0 + 2 = 9$,
+the number of keys. From \tabref{tab:q30-table}, the longest chain is the one
+at slot 1, holding $28, 19, 10$, all of which leave remainder 1 when divided
+by 9. Hence the length of the longest chain is $3$.
 
 The following code builds the chains and draws them in \figref{fig:q30}.
 \begin{lstlisting}
