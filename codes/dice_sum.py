@@ -1,6 +1,6 @@
 
 # Theory: the PMF of S = X1 + X2 is the convolution of the two die PMFs,
-# which is the product of their Z-transforms (formula 1.1.5).
+# p_X(n) = sum_k p_X1(n-k) p_X2(k)  (formula 1.1.6).
 import numpy as np
 import matplotlib.pyplot as plt
 #If using termux
